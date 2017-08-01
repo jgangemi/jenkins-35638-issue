@@ -1,0 +1,82 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>org.scriptkitty</groupId>
+  <artifactId>jenkins-35638-issue</artifactId>
+  <version>1</version>
+
+  <properties>
+    <jenkins-job-dsl.version>1.63</jenkins-job-dsl.version>
+
+    <jenkins.version>2.72</jenkins.version>
+    <jenkins-test-harness.version>2.23</jenkins-test-harness.version>
+    <jenkins-war-for-test.version>2.20</jenkins-war-for-test.version>
+    
+    <jenkins-folders.version>6.0.4</jenkins-folders.version>
+
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>${maven.compiler.source}</maven.compiler.target>
+  </properties>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.jenkins-ci.tools</groupId>
+        <artifactId>maven-hpi-plugin</artifactId>
+        <version>1.121</version>
+        <executions>
+          <execution>
+            <id>resolve-test-dependencies</id>
+            <phase>process-test-resources</phase>
+            <goals>
+              <goal>resolve-test-dependencies</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.jenkins-ci.main</groupId>
+      <artifactId>jenkins-test-harness</artifactId>
+      <version>${jenkins-test-harness.version}</version>
+      <scope>test</scope>
+      <exclusions>
+        <exclusion>
+          <groupId>junit</groupId>
+          <artifactId>junit-dep</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.jenkins-ci.main</groupId>
+      <artifactId>jenkins-war</artifactId>
+      <version>${jenkins.version}</version>
+      <type>war</type>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.jenkins-ci.main</groupId>
+      <artifactId>jenkins-war</artifactId>
+      <classifier>war-for-test</classifier>
+      <version>${jenkins-war-for-test.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.jenkins-ci.plugins</groupId>
+      <artifactId>job-dsl</artifactId>
+      <version>${jenkins-job-dsl.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.jenkins-ci.plugins</groupId>
+      <artifactId>cloudbees-folder</artifactId>
+      <version>${jenkins-folders.version}</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+</project>
