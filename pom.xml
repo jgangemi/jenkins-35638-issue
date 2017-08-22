@@ -50,6 +50,14 @@
           <groupId>junit</groupId>
           <artifactId>junit-dep</artifactId>
         </exclusion>
+        <exclusion>
+          <groupId>xalan</groupId>
+          <artifactId>xalan</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>xerces</groupId>
+          <artifactId>xercesImpl</artifactId>
+        </exclusion>
       </exclusions>
     </dependency>
     <dependency>
